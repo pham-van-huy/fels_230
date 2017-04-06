@@ -18,8 +18,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'varatar',
-        'isadmin',
+        'avatar',
+        'is_admin',
     ];
 
     /**
