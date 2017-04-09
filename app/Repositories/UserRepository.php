@@ -24,7 +24,7 @@ class UserRepository
         $user = [
             'name' => $request['name'],
             'email' => $request['email'],
-            'password' => $request['password'],
+            'password' => bcrypt($request['password']),
             'avatar' => $fileName,
             'is_admin' => $is_admin,
         ];

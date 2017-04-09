@@ -12,8 +12,6 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    <!-- cdn of font awesome -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
@@ -21,6 +19,10 @@
             'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
+    <link href="/css/mystyle.css" rel="stylesheet">
+    <!-- cdn of font awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -30,22 +32,22 @@
 
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="sr-only">Project 1</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                    <a class="navbar-brand" href="{{ action('HomeController@index') }}">
+                        Project 1
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @yield('navbar')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -72,6 +74,11 @@
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
+                                    @if (Auth::user()->is_admin ==1)
+                                        <li>
+                                            <a href="{{ action('Admin\HomeAdminController@index') }}">Page admin</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
@@ -80,7 +87,10 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
+        
     </div>
 
     <!-- Scripts -->

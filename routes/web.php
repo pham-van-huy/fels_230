@@ -18,3 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+    Route::get('home', 'Admin\HomeAdminController@index');
+
+    Route::resource('word', 'Admin\WordController');
+    Route::resource('categories', 'Admin\CategoriesController', ['except' => ['show']]);
+    Route::resource('user', 'Admin\UserController', ['except' => ['create', 'store']]);
+});

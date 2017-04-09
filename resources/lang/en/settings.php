@@ -132,7 +132,7 @@ return [
         'reset_email' => 'Reset Password',
         'register' => 'Register',
         'homepage' => 'Home',
-        'title.admin_user_index' => 'Admin User Index',
+        'admin_user_index' => 'Admin User Index',
         'admin_user_profile' => 'Admin User Profile',
         'admin_user_edit' => 'Admin User Edit',
     ],

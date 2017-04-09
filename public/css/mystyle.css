@@ -1,0 +1,9 @@
+.list-category
+{
+	list-style-type: none;
+}
+
+.list-category>li
+{
+	display: inline-block;
+}
