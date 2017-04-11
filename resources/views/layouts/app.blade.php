@@ -47,7 +47,7 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @yield('nabar')
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,7 +80,7 @@
                                             'method' => 'POST',
                                             'style' => 'display:none',
                                         ]) }}
-                                        </form>
+                                        {{ Form::close() }}
                                     </li>
                                 </ul>
                             </li>

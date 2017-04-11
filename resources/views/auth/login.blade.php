@@ -81,6 +81,21 @@
                             </div>
                         </div>
                     {{ Form::close() }}
+                    <hr>
+                    <center>
+                        <a class="circle facebook" href=" {{ action('Auth\SocialAuthController@redirectToProvider', 'facebook')}} ">
+                            <i class="fa fa-facebook-square fa-2x"></i>
+                            {{ trans('settings.text.social.facebook') }}
+                        </a>
+                        <a class="circle twitter" href=" {{ action('Auth\SocialAuthController@redirectToProvider', 'twitter')}}">
+                            <i class="fa fa-twitter-square fa-2x"></i>
+                            {{ trans('settings.text.social.twitter') }}
+                        </a>
+                        <a class="circle google" href=" {{ action('Auth\SocialAuthController@redirectToProvider', 'google') }} ">
+                            <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                            {{ trans('settings.text.social.google') }}
+                        </a>
+                    </center>
                 </div>
             </div>
         </div>
