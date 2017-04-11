@@ -27,5 +27,9 @@ class AppServiceProvider extends ServiceProvider
             'App\Repositories\User\UserInterface',
             'App\Repositories\User\UserRepository'
         );
+        $this->app->bind(
+            'App\Repositories\SocialAccount\SocialAccountInterface',
+            'App\Repositories\SocialAccount\SocialAccountRepository'
+        );
     }
 }
