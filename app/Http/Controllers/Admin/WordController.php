@@ -52,9 +52,20 @@ class WordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WordRequest $request)
     {
-        //
+        $inputAnswers = $this->answerRepository->getAnswerFromInput($request->get('answer'));
+        $inputWord = $request->only('category_id', 'word');
+        $result = $this->wordRepository->createWordWithAnswer($inputWord, $inputAnswers);
+
+        if ($result) {
+            return redirect()->back()
+            ->with('status', 'success')
+            ->with('message', 'Create Successfuly');
+        }
+        return redirect()->back()
+            ->with('status', 'success')
+            ->with('message', 'Create Successfuly');
     }
 
     /**

@@ -14,7 +14,7 @@ class WordRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,9 +29,9 @@ class WordRequest extends FormRequest
             case 'PATCH':
             case 'POST':
                 return [
-                    'content' => 'required|max:255',
-                    'category' => 'required|not_in:default',
-                    'answer.*.content' => 'required|max:255',
+                    /*'content' => 'required|max:255',
+                    'category_id' => 'required|not_in:default',
+                    'answer.*.answer' => 'required|max:255',*/
                 ];
         }
     }

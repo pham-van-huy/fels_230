@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Answer extends Model
 {
-    protected $fielable = [
+    protected $fillable = [
         'word_id',
         'answer',
         'is_correct',

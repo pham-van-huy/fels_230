@@ -89,6 +89,7 @@ class CategoriesController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $input = $request->only('name');
+
         if ($this->categoryRepository->update($input, $id)) {
             return redirect()->action('Admin\CategoriesController@index')
             ->with('status', 'success')
@@ -106,6 +107,13 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if ($this->categoryRepository->destroy($id)) {
+            return redirect()->back()
+            ->with('status', 'success')
+            ->with('message', trans('settings.text.category.delete_category_successfully'));
+        }
+        return redirect()->back()
+        ->with('status', 'success')
+        ->with('message', trans('settings.text.category.delete_category_fail'));
     }
 }

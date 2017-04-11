@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Support\Facades\Input;
 use Exception;
 use File;
+use DB;
 
 class CategoryRepository
 {
@@ -50,5 +51,21 @@ class CategoryRepository
             throw new Exception(trans('message.update_error'));
         }
         return $result;
+    }
+
+    public function destroy($ids)
+    {
+        try {
+            DB::beginTransaction();
+            $data = $this->model->destroy($ids);
+            if (!$data) {
+                throw new Exception(trans('message.delete_error'));
+            }
+            DB::commit();
+            return $data;
+        } catch (Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
     }
 }
