@@ -82,6 +82,13 @@
                                         ]) }}
                                         {{ Form::close() }}
                                     </li>
+                                    @if (Auth::user()->is_admin == 1)
+                                    <li>
+                                        <a href="{{ action('Admin\HomeAdminController@index') }}">
+                                            {{ trans('settings.text.page_admin') }}
+                                        </a>
+                                    </li>
+                                    @endif
                                 </ul>
                             </li>
                         @endif
