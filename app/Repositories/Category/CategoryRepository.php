@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Input;
 use Exception;
 use File;
 
-class CategoryRepository extends BaseRepository implements CategoryInterface
+class CategoryRepository extends BaseRepository implements WordInterface
 {
     protected $model;
 

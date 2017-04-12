@@ -10,6 +10,8 @@ use App\Repositories\SocialAccount\SocialAccountInterface;
 use App\Repositories\SocialAccount\SocialAccountRepository;
 use App\Repositories\Category\CategoryInterface;
 use App\Repositories\Category\CategoryRepository;
+use App\Repositories\Word\WordInterface;
+use App\Repositories\Word\WordRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         App::bind(UserInterface::class, UserRepository::class);
         App::bind(SocialAccountInterface::class, SocialAccountRepository::class);
         App::bind(CategoryInterface::class, CategoryRepository::class);
+        App::bind(WordInterface::class, WordRepository::class);
     }
 }
