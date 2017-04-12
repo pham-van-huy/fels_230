@@ -3,6 +3,13 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App;
+use App\Repositories\User\UserInterface;
+use App\Repositories\User\UserRepository;
+use App\Repositories\SocialAccount\SocialAccountInterface;
+use App\Repositories\SocialAccount\SocialAccountRepository;
+use App\Repositories\Category\CategoryInterface;
+use App\Repositories\Category\CategoryRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,13 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            'App\Repositories\User\UserInterface',
-            'App\Repositories\User\UserRepository'
-        );
-        $this->app->bind(
-            'App\Repositories\SocialAccount\SocialAccountInterface',
-            'App\Repositories\SocialAccount\SocialAccountRepository'
-        );
+        App::bind(UserInterface::class, UserRepository::class);
+        App::bind(SocialAccountInterface::class, SocialAccountRepository::class);
+        App::bind(CategoryInterface::class, CategoryRepository::class);
     }
 }
