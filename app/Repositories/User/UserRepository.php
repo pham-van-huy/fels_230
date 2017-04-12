@@ -34,12 +34,12 @@ class UserRepository extends BaseRepository implements UserInterface
     protected function uploadAvatar($oldImage = null)
     {
         $fileAvatar = Input::file('avatar');
-        $destinationPath = config('settings.user.avatar_path');
+        $destinationPath = public_path(config('settings.user.avatar_path'));
         $fileName = uniqid(time(), true) . '_' . $fileAvatar->getClientOriginalName();
         Input::file('avatar')->move($destinationPath, $fileName);
         $imageOldDestinationPath = $destinationPath . $oldImage;
-        
-        if (!empty($oldImage) && file_exists($imageOldDestinationPath)) {
+
+        if (!empty($oldImage) && File::exists($imageOldDestinationPath)) {
             File::delete($imageOldDestinationPath);
         }
 

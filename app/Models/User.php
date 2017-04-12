@@ -42,4 +42,14 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = Hash::make($value);
     }
+
+    public function getAvatarAttribute($value)
+    {
+        if (empty($value)) {
+            return asset(config('settings.user.path_avatar_default'));
+        }
+
+        return preg_match('#^https?#', $value)
+            ? $value : asset(config('settings.user.avatar_path') . $value);
+    }
 }
