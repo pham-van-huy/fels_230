@@ -19,7 +19,7 @@ return [
         'back' => 'Back',
         'edit' => 'Edit',
         'delete' => 'Delete',
-        'update' =>'Update',
+        'update' => 'Update',
     ],
     'text' => [
         'register' => 'Register',
@@ -40,7 +40,7 @@ return [
             'add_fail' => 'Add Category Fail!',
             'number_word' => 'Number Word',
             'delete_success' => 'Delete Category Successfuly',
-            'delete_fail'=> 'Delete Category Fail',
+            'delete_fail' => 'Delete Category Fail',
             'edit' => 'Edit Category',
             'update_fail' => 'Update Category Fail',
             'update_success' => 'Update Category Successfuly',
@@ -51,6 +51,8 @@ return [
             'email_user' => 'Email',
             'avatar_user' => 'Avatar',
             'name_user' => 'Name',
+            'delete_fail' => 'Delete User Fail',
+            'delete_success' => 'Delete User Successfuly',
         ],
         'social' => [
             'google' => 'Google',
@@ -76,9 +78,10 @@ return [
         'title.admin_user_index' => 'Admin User Index',
         'admin_user_profile' => 'Admin User Profile',
         'admin_user_edit' => 'Admin User Edit',
-        'home_admin' => "Home page admin",
+        'home_admin' => 'Home page admin"=',
         'add_category' => 'Add Category',
         'list_category' => 'List Category',
         'edit_category' => 'Edit Category',
+        'list_user' => 'List User',
     ],
 ];
