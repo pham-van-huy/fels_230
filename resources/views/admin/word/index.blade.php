@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title')
-    {{ trans('settings.title.list_user') }}
+    {{ trans('settings.title.list_word') }}
 @endsection
 
 @section('content')
@@ -15,36 +15,37 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <p class='text-center'>{{ trans('settings.title.list_user') }}</p>
+                    <p class='text-center'>{{ trans('settings.title.list_word') }}</p>
                 </h3>
             </div>
             <div class="panel-body">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>{{ trans('settings.text.user.id_user') }}</th>
-                        <th>{{ trans('settings.text.user.name_user') }}</th>
-                        <th>{{ trans('settings.text.user.email_user') }}</th>
+                        <th>{{ trans('settings.text.id') }}</th>
+                        <th>{{ trans('settings.text.word.name') }}</th>
+                        <th>{{ trans('settings.text.category.name') }}</th>
                         <th>{{ trans('settings.text.created_at') }}</th>
-                        <th>{{ trans('settings.text.user.avatar_user') }}</th>
                         <th>{{ trans('settings.text.action') }}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($words as $word)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->created_at }}</td>
-                            <td>
-                                <img class="img-responsive img-list-user" src="{{ $user->avatar }}">
-                            </td>
+                            <td>{{ $word->id }}</td>
+                            <td>{{ $word->word }}</td>
+                            <td>{{ $word->category->name }}</td>
+                            <td>{{ $word->created_at }}</td>
                             <td>
                                 <ul class="list-category">
                                     <li>
+                                        <a href="{{ action('Admin\WordController@edit', $word->id) }}" class="btn btn-success btn-xs">
+                                            {{ trans('settings.button.edit') }}
+                                        </a>
+                                    </li>
+                                    <li>
                                         {{ Form::open([
-                                            'action' => ['Admin\UserController@destroy', $user->id],
+                                            'action' => ['Admin\WordController@destroy', $word->id],
                                             'method' => 'DELETE',
                                         ]) }}
 
@@ -59,7 +60,7 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $users->links() }}
+            {{ $words->links() }}
             </div>
         </div>
     </div>
