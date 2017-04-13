@@ -47,6 +47,7 @@
                                             'action' => ['Admin\UserController@destroy', $user->id],
                                             'method' => 'DELETE',
                                         ]) }}
+
                                             {{ Form::submit(trans('settings.button.delete'), [
                                                 'class' => 'btn btn-danger btn-xs',
                                             ]) }}

@@ -20,6 +20,7 @@ return [
         'edit' => 'Edit',
         'delete' => 'Delete',
         'update' => 'Update',
+        'add_answer' => 'Add answer',
     ],
     'text' => [
         'register' => 'Register',
@@ -44,6 +45,7 @@ return [
             'edit' => 'Edit Category',
             'update_fail' => 'Update Category Fail',
             'update_success' => 'Update Category Successfuly',
+            'choice' => '---Choice Category---',
 
         ],
         'user' => [
@@ -69,6 +71,16 @@ return [
             'add_word' => 'Add Word',
             'list_word' => 'List Word',
         ],
+        'word' => [
+            'add_word' => 'Add New Word',
+            'name' => 'Word',
+            'add_fail' => 'Add word fail',
+            'add_success' => 'Add word Successfuly',
+        ],
+        'answer' => [
+            'answer' => 'Answers',
+            'answer_correct' => 'Answer Correct',
+        ],
     ],
     'title' => [
         'login' => 'Login',
@@ -83,5 +95,6 @@ return [
         'list_category' => 'List Category',
         'edit_category' => 'Edit Category',
         'list_user' => 'List User',
+        'add_word' => 'Add New Word',
     ],
 ];

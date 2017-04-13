@@ -24,9 +24,9 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $result = $this->userRepository->delete($id);
+        $user = $this->userRepository->delete($id);
 
-        if (!$result) {
+        if (!$user) {
             return redirect()->back()
                 ->with('status', 'danger')
                 ->with('message', trans('settings.text.user.delete_fail'));
