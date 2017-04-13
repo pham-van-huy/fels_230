@@ -9,7 +9,7 @@
 
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="#">
+                <a href="{{ action('Admin\UserController@index') }}">
                     {{ trans('settings.text.nabar.list_user') }}
                 </a>
             </li>
