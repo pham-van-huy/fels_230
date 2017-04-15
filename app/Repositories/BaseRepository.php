@@ -18,9 +18,9 @@ abstract class BaseRepository implements BaseInterface
         return $this->model->all();
     }
 
-    public function fluck($column, $key = null)
+    public function pluck($column, $key = null)
     {
-        return $this->model->lists($column, $key);
+        return $this->model->pluck($column, $key);
     }
 
     public function paginate($limit = null, $columns = ['*'])
