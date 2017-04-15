@@ -6,7 +6,7 @@ interface BaseInterface
     public function all();
 
     //get list value of colunm
-    public function fluck($column, $key = null);
+    public function pluck($column, $key = null);
 
     public function paginate($limit = null, $columns = ['*']);
 

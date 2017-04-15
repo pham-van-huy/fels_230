@@ -20,6 +20,7 @@ return [
         'edit' => 'Edit',
         'delete' => 'Delete',
         'update' => 'Update',
+        'save_change' => 'Save Changes',
     ],
     'text' => [
         'register' => 'Register',
@@ -34,6 +35,7 @@ return [
         'updated_at' => 'Updated_at',
         'id' => 'ID',
         'action' => 'Action',
+        'error_not_found' => 'Error 404',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -44,7 +46,7 @@ return [
             'edit' => 'Edit Category',
             'update_fail' => 'Update Category Fail',
             'update_success' => 'Update Category Successfuly',
-
+            'choice' => '---Choice Category---',
         ],
         'user' => [
             'id_user' => 'ID USER',
@@ -69,6 +71,22 @@ return [
             'add_word' => 'Add Word',
             'list_word' => 'List Word',
         ],
+        'word' => [
+            'add_word' => 'Add New Word',
+            'name' => 'Word',
+            'add_fail' => 'Add word fail',
+            'update_fail' => 'Update word fail',
+            'add_success' => 'Add word Successfuly',
+            'update_success' => 'Update word Successfuly',
+            'delete_success' => 'Delete word Successfuly',
+            'delete_fail' => 'Delete word Fail',
+            'edit_word' => 'Edit Word',
+            'not_found' => 'Not Found!',
+        ],
+        'answer' => [
+            'answer' => 'Answers',
+            'answer_correct' => 'Answer Correct',
+        ],
     ],
     'title' => [
         'login' => 'Login',
@@ -83,5 +101,9 @@ return [
         'list_category' => 'List Category',
         'edit_category' => 'Edit Category',
         'list_user' => 'List User',
+        'add_word' => 'Add New Word',
+        'list_word' => 'List Word',
+        'edit_word' => 'Edit Word',
+        'error_not_found' => 'Error 404',
     ],
 ];
