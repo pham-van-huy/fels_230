@@ -10,7 +10,7 @@ class Lesson extends Model
         'user_id',
         'category_id',
     ];
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -28,7 +28,7 @@ class Lesson extends Model
 
     public function answers()
     {
-        return $this->belongsToMany(Answer::class);
+        return $this->belongsToMany(Answer::class, 'results');
     }
 
     public function words()

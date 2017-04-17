@@ -29,3 +29,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('category', 'Admin\CategoryController', ['expect' => ['show']]);
     Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
 });
+
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('category/list', 'User\CategoryController@index');
+    Route::get('lesson/{idcategory}/test', 'User\LessonController@lessontest');
+    Route::post('result/{idCategory}/store', 'User\ResultController@store');
+});
