@@ -31,16 +31,36 @@ class UserRepository extends BaseRepository implements UserInterface
         return $this->model->create($input);
     }
 
+    public function update($request, $id)
+    {
+        $inputs = [
+            'name' => $request['name'],
+            'email' => $request['email'],
+        ];
+
+        if (!empty($request['avatar'])) {
+            $avatar = $this->uploadAvatar(Auth::user()->avatar);
+            $inputs['avatar'] = $avatar;
+        }
+
+        if (!empty($request['password'])) {
+            $inputs['password'] = $request['password'];
+        }
+
+        return $this->model->find($id)->update($inputs);
+    }
+
     protected function uploadAvatar($oldImage = null)
     {
         $fileAvatar = Input::file('avatar');
         $destinationPath = public_path(config('settings.user.avatar_path'));
         $fileName = uniqid(time(), true) . '_' . $fileAvatar->getClientOriginalName();
         Input::file('avatar')->move($destinationPath, $fileName);
-        $imageOldDestinationPath = $destinationPath . $oldImage;
 
-        if (!empty($oldImage) && File::exists($imageOldDestinationPath)) {
-            File::delete($imageOldDestinationPath);
+        if (!empty($oldImage) && File::exists($oldImage)
+            && !preg_match('#^https?#', $oldImage)
+            && !preg_match('#' . config('settings.user.avatar_default') . '?$#', $oldImage)) {
+            File::delete($oldImage);
         }
 
         return $fileName;

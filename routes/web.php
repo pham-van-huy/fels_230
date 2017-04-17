@@ -30,3 +30,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
     Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
 });
+
+//Route for user
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('', 'User\HomeController@index');
+    Route::get('profile', 'User\UserController@showProfile');
+    Route::get('profile/edit', 'User\UserController@editProfile');
+    Route::PATCH('profile/update', 'User\UserController@updateProfile');
+    Route::get('category/list', 'User\CategoryController@index');
+    Route::get('lesson/create/{id}', 'User\LessonController@index');
+});

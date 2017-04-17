@@ -37,4 +37,9 @@ class WordRepository extends BaseRepository implements WordInterface
     {
         return $this->model->with('category')->paginate(config('settings.user.paginate'));
     }
+
+    public function getWordForLesson($idCategory)
+    {
+
+    }
 }

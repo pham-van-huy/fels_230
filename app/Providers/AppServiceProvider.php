@@ -14,6 +14,10 @@ use App\Repositories\Word\WordInterface;
 use App\Repositories\Word\WordRepository;
 use App\Repositories\Answer\AnswerRepository;
 use App\Repositories\Answer\AnswerInterface;
+use App\Repositories\Result\ResultInterface;
+use App\Repositories\Result\ResultRepository;
+use App\Repositories\Lesson\LessonRepository;
+use App\Repositories\Lesson\LessonInterface;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -39,5 +43,7 @@ class AppServiceProvider extends ServiceProvider
         App::bind(CategoryInterface::class, CategoryRepository::class);
         App::bind(WordInterface::class, WordRepository::class);
         App::bind(AnswerInterface::class, AnswerRepository::class);
+        App::bind(LessonInterface::class, LessonRepository::class);
+        App::bind(ResultInterface::class, ResultRepository::class);
     }
 }

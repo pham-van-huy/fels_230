@@ -19,4 +19,9 @@ class Category extends Model
     {
         return $this->hasMany(Word::class);
     }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = ucfirst($value);
+    }
 }

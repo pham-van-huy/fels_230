@@ -4,8 +4,10 @@ return [
     'label' => [
         'email_address' => 'Email Address',
         'password' => 'Password',
+        'new_password' => 'New Password',
         'name_user' => 'Name',
         'confirm_password' => 'Confirm Password',
+        'confirm_new_password' => 'Confirm New Password',
         'avatar' => 'Avatar',
         'remember_me' => 'Remember Me',
     ],
@@ -21,6 +23,7 @@ return [
         'delete' => 'Delete',
         'update' => 'Update',
         'save_change' => 'Save Changes',
+        'start_lesson' => 'Start Lesson',
     ],
     'text' => [
         'register' => 'Register',
@@ -35,6 +38,15 @@ return [
         'updated_at' => 'Updated_at',
         'id' => 'ID',
         'action' => 'Action',
+        'profile' => 'Your Profile',
+        'user_infor' => 'Your Information',
+        'learned_words' => 'Learned Words',
+        'followers' => 'Followers',
+        'following' => 'Following',
+        'activities_user' => 'Your Activities',
+        'activities_of_followings' => 'Activities of followings',
+        'detail_profile' => 'Detail Profile',
+        'edit_profile' => 'Edit Profile',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -46,6 +58,7 @@ return [
             'update_fail' => 'Update Category Fail',
             'update_success' => 'Update Category Successfuly',
             'choice' => '---Choice Category---',
+            'list_category' => 'List Categories',
         ],
         'user' => [
             'id_user' => 'ID USER',
@@ -54,6 +67,8 @@ return [
             'name_user' => 'Name',
             'delete_fail' => 'Delete User Fail',
             'delete_success' => 'Delete User Successfuly',
+            'update_fail' => 'Update Profile Fail',
+            'update_success' => 'Update Profile Successfuly',
         ],
         'social' => [
             'google' => 'Google',
@@ -69,6 +84,7 @@ return [
             'word_manage' => 'Manage Word',
             'add_word' => 'Add Word',
             'list_word' => 'List Word',
+            'start_lesson' => 'Start New Lesson',
         ],
         'word' => [
             'add_word' => 'Add New Word',
@@ -80,6 +96,7 @@ return [
             'delete_success' => 'Delete word Successfuly',
             'delete_fail' => 'Delete word Fail',
             'edit_word' => 'Edit Word',
+            'words' => 'words',
         ],
         'answer' => [
             'answer' => 'Answers',
@@ -102,5 +119,8 @@ return [
         'add_word' => 'Add New Word',
         'list_word' => 'List Word',
         'edit_word' => 'Edit Word',
+        'detail_profile' => 'Detaile Profile',
+        'edit' => 'Edit',
+        'edit_profile' => 'Edit Profile',
     ],
 ];

@@ -70,7 +70,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @if (Auth::check())
-                        <a href="{{ action('HomeController@index') }}">
+                        <a href="{{ action('User\HomeController@index') }}">
                             {{ trans('settings.title.homepage') }}
                         </a>
                     @else

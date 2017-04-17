@@ -16,4 +16,21 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    //validate passwor update
+    $('#update-profile').click(function(e)
+    {
+        var new_password = $('#password-new').val().length;
+        var password_new_confirm = $('#password-new-confirm').val().length;
+
+        if (new_password > 0 && password_new_confirm == 0) {
+            $('#password-new-confirm').addClass('field-require');
+            e.preventDefault();
+        }
+
+        if (new_password == 0 && password_new_confirm > 0) {
+            $('#password-new').addClass('field-require');
+            e.preventDefault();
+        }
+    });
 });
