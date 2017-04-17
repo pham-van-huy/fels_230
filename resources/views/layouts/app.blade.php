@@ -39,7 +39,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ action('HomeController@index') }}">
+                    <a class="navbar-brand" href="{{ action('User\HomeController@index') }}">
                         {{ trans('settings.text.framgia_elearning_system') }}
                     </a>
                 </div>
@@ -89,6 +89,11 @@
                                         </a>
                                     </li>
                                     @endif
+                                    <li>
+                                        <a href="{{ action('User\UserController@show', auth()->id()) }}">
+                                            {{ trans('settings.text.profile') }}
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

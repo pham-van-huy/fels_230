@@ -8,6 +8,8 @@ return [
         'confirm_password' => 'Confirm Password',
         'avatar' => 'Avatar',
         'remember_me' => 'Remember Me',
+        'new_password' => 'New Password',
+        'confirm_new_password' => 'Confirm New Password',
     ],
     'button' => [
         'login' => 'Login',
@@ -21,6 +23,8 @@ return [
         'delete' => 'Delete',
         'update' => 'Update',
         'save_change' => 'Save Changes',
+        'start_lesson' => 'Start Lesson',
+        'check' => 'Check',
     ],
     'text' => [
         'register' => 'Register',
@@ -36,6 +40,18 @@ return [
         'id' => 'ID',
         'action' => 'Action',
         'error_not_found' => 'Error 404',
+        'profile' => 'Your Profile',
+        'edit_profile' => 'Edit Profile',
+        'detail_profile' => 'Detaile Profile',
+        'user_infor' => 'Your Information',
+        'activities_user' => 'Your Activities',
+        'activities_of_followings' => 'Activities of followings',
+        'learned_words' => 'Learned Words',
+        'followers' => 'Followers',
+        'following' => 'Following',
+        'test' => 'Lesson Test',
+        'have' => 'Have',
+        'well_done' => 'Well done for completing the test. Your score is :countIsCorrectWord out of :countWords',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -47,6 +63,7 @@ return [
             'update_fail' => 'Update Category Fail',
             'update_success' => 'Update Category Successfuly',
             'choice' => '---Choice Category---',
+            'list_category' => 'List Categories',
         ],
         'user' => [
             'id_user' => 'ID USER',
@@ -55,6 +72,7 @@ return [
             'name_user' => 'Name',
             'delete_fail' => 'Delete User Fail',
             'delete_success' => 'Delete User Successfuly',
+            'update_success' => 'Update Profile Successfuly',
         ],
         'social' => [
             'google' => 'Google',
@@ -70,6 +88,7 @@ return [
             'word_manage' => 'Manage Word',
             'add_word' => 'Add Word',
             'list_word' => 'List Word',
+            'start_lesson' => 'Start New Lesson',
         ],
         'word' => [
             'add_word' => 'Add New Word',
@@ -82,6 +101,7 @@ return [
             'delete_fail' => 'Delete word Fail',
             'edit_word' => 'Edit Word',
             'not_found' => 'Not Found!',
+            'words' => 'words',
         ],
         'answer' => [
             'answer' => 'Answers',
@@ -105,5 +125,8 @@ return [
         'list_word' => 'List Word',
         'edit_word' => 'Edit Word',
         'error_not_found' => 'Error 404',
+        'edit_profile' => 'Edit Profile',
+        'detail_profile' => 'Detaile Profile',
+        'lesson_test' => 'Lesson Test',
     ],
 ];

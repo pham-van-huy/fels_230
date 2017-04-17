@@ -18,23 +18,36 @@ class WordRepository extends BaseRepository implements WordInterface
         $this->model = $word;
     }
 
-    public function storeWordAndAnswers($input)
+    public function listWordIdLearned()
     {
-        DB::beginTransaction();
-        try {
-            $data = $this->model
-                ->create(array_only($input, ['word', 'category_id']))
-                ->answers()->createMany($input['ans']);
-            DB::commit();
+        $allLesson = $this->answerCorrect();
 
-            return $data;
-        } catch (Exception $e) {
-            DB::rollBack();
+        if ($allLesson->isEmpty()) {
+            return [];
         }
+
+        foreach ($allLesson as $lesson) {
+            foreach ($lesson->answers as $answer) {
+                $idWord[] = $answer->word_id;
+            }
+        }
+
+        return array_unique($idWord);
     }
 
-    public function all()
+    public function answerCorrect()
     {
-        return $this->model->with('category')->paginate(config('settings.user.paginate'));
+        $allLesson = Auth::user()
+            ->lessons()
+            ->orderBy('category_id', 'asc')
+            ->whereHas('answers', function ($query) {
+                $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
+            })
+            ->get()
+            ->load(['answers' => function ($query) {
+                $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
+            },
+            ]);
+        return $allLesson;
     }
 }

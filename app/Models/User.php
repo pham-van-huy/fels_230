@@ -52,4 +52,9 @@ class User extends Authenticatable
         return preg_match('#^https?#', $value)
             ? $value : asset(config('settings.user.avatar_path') . $value);
     }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return date('d/m/Y');
+    }
 }

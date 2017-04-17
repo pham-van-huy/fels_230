@@ -30,3 +30,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
     Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
 });
+//route for user
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('', 'User\HomeController@index');
+    Route::resource('profile', 'User\UserController', ['only' => ['show', 'edit', 'update']]);
+    Route::get('category/list', 'User\CategoryController@index');
+});
