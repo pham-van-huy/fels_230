@@ -28,4 +28,5 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::get('home', 'Admin\HomeAdminController@index');
     Route::resource('category', 'Admin\CategoryController', ['expect' => ['show']]);
     Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
+    Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
 });

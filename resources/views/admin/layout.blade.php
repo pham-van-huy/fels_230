@@ -45,13 +45,13 @@
 
         <ul class="dropdown-menu" role="menu">
             <li>
-                <a href="#">
+                <a href="{{ action('Admin\WordController@index') }}">
                     {{ trans('settings.text.nabar.list_word') }}
                 </a>
             </li>
 
             <li>
-                <a href="#">
+                <a href="{{ action('Admin\WordController@create') }}">
                     {{ trans('settings.text.nabar.add_word') }}
                 </a>
             </li>
