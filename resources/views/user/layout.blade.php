@@ -2,7 +2,7 @@
 
 @section('nabar')
     <li class="dropdown">
-        <a href="#">
+        <a href="{{ action('User\CategoryController@index') }}">
             {{ trans('settings.text.nabar.start_lesson') }}
         </a>
     </li>

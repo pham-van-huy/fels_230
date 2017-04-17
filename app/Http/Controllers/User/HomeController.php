@@ -17,6 +17,7 @@ class HomeController extends Controller
     public function index()
     {
         $numberWordsLearned = count($this->wordRepository->listWordIdLearned());
+
         return view('user.home', ['numberWordsLearned' => $numberWordsLearned]);
     }
 }
