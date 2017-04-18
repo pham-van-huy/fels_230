@@ -26,3 +26,28 @@
 .has-error {
     color: red;
 }
+
+#img-info {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.field-require {
+    border: 1px solid red;
+}
+
+.border-bottom {
+    border-bottom: 1px dotted black;
+}
+
+.start-lesson {
+    margin-top: 20px;
+}
+.is-correct {
+    color: green;
+}
+
+.not-correct {
+    color: red;
+}

@@ -52,7 +52,7 @@ abstract class BaseRepository implements BaseInterface
         return $this->model->create($inputs);
     }
 
-    public function update($inputs, $id)
+    public function update($id, $input)
     {
         return $this->model->find($id)->update($inputs);
     }

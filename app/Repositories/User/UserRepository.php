@@ -31,6 +31,24 @@ class UserRepository extends BaseRepository implements UserInterface
         return $this->model->create($input);
     }
 
+    public function update($id, $inputs)
+    {
+        $dateUpdate = [
+            'name' => $inputs['name'],
+            'email' => $inputs['email'],
+        ];
+
+        if (!empty($inputs['password'])) {
+            $dateUpdate['password'] = $inputs['password'];
+        }
+
+        if (!empty($inputs['avatar'])) {
+            $dateUpdate['avatar'] = $this->uploadAvatar(Auth::user()->avatar);
+        }
+
+        return Auth::user()->update($dateUpdate);
+    }
+
     protected function uploadAvatar($oldImage = null)
     {
         $fileAvatar = Input::file('avatar');
