@@ -31,7 +31,7 @@ class WordController extends Controller
 
     public function index()
     {
-        $words = $this->wordRepository->all();
+        $words = $this->wordRepository->paginate();
         return view('admin.word.index', ['words' => $words]);
     }
 
@@ -76,7 +76,7 @@ class WordController extends Controller
 
         DB::beginTransaction();
         try {
-            $updateWord = $this->wordRepository->update($inputsWord, $id);
+            $updateWord = $this->wordRepository->update($id, $inputsWord);
             $updateAnswer = $this->answerRepository->updateAnswer($inputAnswer);
             DB::commit();
         } catch (Exception $e) {

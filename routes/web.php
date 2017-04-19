@@ -35,4 +35,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('', 'User\HomeController@index');
     Route::resource('profile', 'User\UserController', ['only' => ['show', 'edit', 'update']]);
     Route::get('category/list', 'User\CategoryController@index');
+    Route::get('test/{categoryId}/category', 'User\LessonController@showLessonTest');
+    Route::post('result/{categoryId}/category', 'User\ResultController@store');
 });
