@@ -8,7 +8,7 @@
     </li>
 
     <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+        <a href="{{ action('User\WordController@showList') }}">
             {{ trans('settings.text.nabar.list_word') }}
         </a>
     </li>

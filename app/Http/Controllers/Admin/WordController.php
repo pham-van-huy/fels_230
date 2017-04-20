@@ -24,8 +24,9 @@ class WordController extends Controller
         $this->categoryRepository = $categoryRepository;
         $this->answerRepository = $answerRepository;
 
-        $categories = $this->categoryRepository->pluck('name', 'id')->toArray();
-        array_unshift($categories, ['default' => trans('settings.text.category.choice')]);
+        $categories = $this->categoryRepository->pluck('name', 'id');
+        $categories->prepend(trans('settings.text.category.choice'), 'default');
+        $categories->toArray();
         view()->share(['categories' => $categories]);
     }
 
@@ -43,7 +44,6 @@ class WordController extends Controller
     public function store(WordRequest $request)
     {
         $input = $request->only('word', 'category_id', 'ans');
-
         $result = $this->wordRepository->storeWordAndAnswers($input);
 
         if (!$result) {

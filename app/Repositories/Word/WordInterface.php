@@ -10,4 +10,10 @@ interface WordInterface
     public function listWordIdLearned();
 
     public function answerCorrect();
+
+    public function getWordList();
+
+    public function groupWordByAlpha($words);
+
+    public function getWordByFilter($inputs);
 }

@@ -25,6 +25,7 @@ return [
         'save_change' => 'Save Changes',
         'start_lesson' => 'Start Lesson',
         'check' => 'Check',
+        'filter' => 'Filter',
     ],
     'text' => [
         'register' => 'Register',
@@ -52,6 +53,11 @@ return [
         'test' => 'Lesson Test',
         'have' => 'Have',
         'well_done' => 'Well done for completing the test. Your score is :countIsCorrectWord out of :countWords',
+        'un_learned' => 'Unlearned',
+        'learned' => 'Learned',
+        'filter_words' => 'Filter',
+        'result_filter' => 'Result Filter',
+        'are_you_sure' => 'Are you sure?',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -102,6 +108,8 @@ return [
             'edit_word' => 'Edit Word',
             'not_found' => 'Not Found!',
             'words' => 'words',
+            'word_empty' => 'Word Empty',
+            'list_word' => 'List Word',
         ],
         'answer' => [
             'answer' => 'Answers',

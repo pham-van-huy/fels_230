@@ -3,5 +3,5 @@ namespace App\Repositories\Category;
 
 interface CategoryInterface
 {
-    
+
 }

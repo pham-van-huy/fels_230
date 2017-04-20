@@ -16,4 +16,8 @@ return [
         'is_correct_answer' => 1,
         'not_correct_answer' => 0,
     ],
+    'filter' => [
+        'no_learned' => '0',
+        'learned' => '1',
+    ],
 ];
