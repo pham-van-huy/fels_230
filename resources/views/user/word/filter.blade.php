@@ -1,0 +1,83 @@
+@extends('user.layout')
+
+@section('title')
+    {{ trans('settings.title.list_word') }}
+@endsection
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">{{ trans('settings.text.result_filter') }}</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col col-md-8 col-md-offset-3">
+                                {{ Form::open([
+                                    'action' => 'User\WordController@wordsFilter',
+                                    'method' => 'POST',
+                                    'class' => 'form-inline',
+                                ]) }}
+                                    <div class="form-group">
+                                        {{ Form::select('categoryId',
+                                            $categories,
+                                            $oldCategory,
+                                            ['class' => 'form-control col-md-6']
+                                        ) }}
+                                    </div>
+
+                                    <div class="form-group group-radio">
+                                        <label class="checkbox-inline">
+                                            {{ Form::radio('rdOption', config('settings.filter.no_learned'),
+                                                $oldRdOption === config('settings.filter.no_learned') ? true : null)
+                                            }} {{ trans('settings.text.un_learned') }}
+                                        </label>
+                                        <label class="checkbox-inline">
+                                            {{ Form::radio('rdOption', config('settings.filter.learned'),
+                                                    $oldRdOption === config('settings.filter.learned') ? true : null)
+                                            }} {{ trans('settings.text.learned') }}
+                                        </label>
+                                    </div>
+                                    {{ Form::submit(trans('settings.button.filter'), [
+                                        'class' => 'btn btn-primary form-control',
+                                    ]) }}
+                                {{ Form::close() }}
+                            </div>
+                        </div>
+                    </div>
+                  <!--END BODY PANEL -->
+                </div>
+
+                <div class="panel panel-default word-list">
+                    <div class="panel-body">
+                        <h2 class="text-center">{{ trans('settings.text.word.list_word') }}</h2>
+                        <div class="row">
+                            <div class="col col-md-10 col-md-offset-1">
+                                @if (!empty($wordsGroup))
+                                    <ol class="section-filter-words">
+                                        @foreach ($wordsGroup as $alpha => $words)
+                                            <div class="section-alpha">
+                                                <h1>{{ strtoupper($alpha) }}</h1>
+                                                @foreach ($words as $item)
+                                                    <li>
+                                                        <p class="word-show">
+                                                            {{ $item->word}}
+                                                            <span class="answer-show">{{ $item->answers[0]->answer }}</span>
+                                                        </p>
+                                                    </li>
+                                                @endforeach
+                                            </div>
+                                        @endforeach
+                                    </ol>
+                                @else
+                                    <h5 class="text-center text-danger">{{ trans('settings.text.word.word_empty') }}</h5>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                    {{ $wordsPaginate->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

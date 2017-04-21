@@ -30,6 +30,14 @@ $(document).ready(function() {
             $('#password-new').addClass('field-require');
             e.preventDefault();
         }
+    });
 
+    $('.delete-admin').on('click', function (e) {
+        var data = $(this).data('confirm');
+        var result = confirm(data);
+
+        if (!result) {
+            e.preventDefault();
+        }
     });
 });

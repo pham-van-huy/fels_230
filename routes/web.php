@@ -37,4 +37,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('category/list', 'User\CategoryController@index');
     Route::get('test/{categoryId}/category', 'User\LessonController@showLessonTest');
     Route::post('result/{categoryId}/category', 'User\ResultController@store');
+    Route::get('word/list', 'User\WordController@showList');
+    Route::post('word/filter', 'User\WordController@wordsFilter');
 });

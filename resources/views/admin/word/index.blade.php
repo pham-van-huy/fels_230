@@ -50,7 +50,8 @@
                                             'method' => 'DELETE',
                                         ]) }}
                                             {{ Form::submit(trans('settings.button.delete'), [
-                                                'class' => 'btn btn-danger btn-xs',
+                                                'class' => 'btn btn-danger btn-xs delete-admin',
+                                                'data-confirm' => trans('settings.text.are_you_sure'),
                                             ]) }}
                                         {{ Form::close() }}
                                     </li>

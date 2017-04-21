@@ -54,7 +54,7 @@ class CategoryController extends Controller
     public function update(CategoryRequest $request, $id)
     {
         $inputs = $request->only('name');
-        $category = $this->categoryRepository->update($inputs, $id);
+        $category = $this->categoryRepository->update($id, $inputs);
 
         if (!$category) {
             return redirect()->back()

@@ -63,4 +63,11 @@ class UserRepository extends BaseRepository implements UserInterface
 
         return $fileName;
     }
+
+    public function paginate($limit = null, $columns = ['*'])
+    {
+        $limit = $limit ?: config('settings.user.paginate');
+
+        return $this->model->with('lessons')->paginate($limit, $columns);
+    }
 }
