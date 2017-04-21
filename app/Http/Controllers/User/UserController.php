@@ -7,11 +7,11 @@ use App\Repositories\User\UserInterface;
 
 class UserController extends Controller
 {
-    protected $useRepository;
+    protected $userRepository;
 
-    public function __construct(UserInterface $useRepository)
+    public function __construct(UserInterface $userRepository)
     {
-        $this->useRepository = $useRepository;
+        $this->userRepository = $userRepository;
     }
 
     public function show($id)
@@ -27,7 +27,7 @@ class UserController extends Controller
     public function update(UserRequest $request)
     {
         $inputs = $request->only('name', 'email', 'password', 'avatar');
-        $update = $this->useRepository->update(auth()->id(), $inputs);
+        $update = $this->userRepository->update(auth()->id(), $inputs);
 
         if (!$update) {
             return redirect()->back()
@@ -38,5 +38,25 @@ class UserController extends Controller
         return redirect()->action('User\UserController@show', auth()->id())
             ->with('status', 'success')
             ->with('message', trans('settings.text.user.update_success'));
+    }
+
+    public function listMember()
+    {
+        $members = $this->userRepository->paginate();
+        return view('user.follow.members', ['members' => $members]);
+    }
+
+    public function addRelationship($userId)
+    {
+        $result = $this->userRepository->addOrRemoveFollow($userId);
+
+        if (!$result) {
+            return response()->json(['status' => config('settings.status.fail')]);
+        }
+
+        return response()->json([
+            'result' => $result,
+            'status' => config('settings.status.success'),
+        ]);
     }
 }

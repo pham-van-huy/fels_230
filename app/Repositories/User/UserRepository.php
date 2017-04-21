@@ -67,7 +67,28 @@ class UserRepository extends BaseRepository implements UserInterface
     public function paginate($limit = null, $columns = ['*'])
     {
         $limit = $limit ?: config('settings.user.paginate');
+        return $this->model->with('lessons', 'followers', 'followings')
+            ->orderBy('name')->where('id', '!=', auth()->id())
+            ->paginate($limit, $columns);
+    }
 
-        return $this->model->with('lessons')->paginate($limit, $columns);
+    public function addOrRemoveFollow($userId)
+    {
+        if (!$userId) {
+            return false;
+        }
+
+        $userCurrent = Auth::user();
+        $listUserFollowing = $userCurrent->followings();
+
+        if ($listUserFollowing->get()->contains('id', $userId)) {
+            $listUserFollowing->detach($userId);
+            $result = config('settings.action.remove');
+        } else {
+            $listUserFollowing->attach($userId);
+            $result = config('settings.action.add');
+        }
+
+        return $result;
     }
 }

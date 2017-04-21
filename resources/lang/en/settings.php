@@ -26,6 +26,7 @@ return [
         'start_lesson' => 'Start Lesson',
         'check' => 'Check',
         'filter' => 'Filter',
+        'follow' => 'Follow',
     ],
     'text' => [
         'register' => 'Register',
@@ -58,6 +59,7 @@ return [
         'filter_words' => 'Filter',
         'result_filter' => 'Result Filter',
         'are_you_sure' => 'Are you sure?',
+        'list_member' => 'List Members',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -79,6 +81,11 @@ return [
             'delete_fail' => 'Delete User Fail',
             'delete_success' => 'Delete User Successfuly',
             'update_success' => 'Update Profile Successfuly',
+            'lesson' => 'Lessons',
+            'followings' => 'Followings',
+            'follow' => 'Follow',
+            'followers' => 'Followers',
+            'unfollow' => 'Unfollow',
         ],
         'social' => [
             'google' => 'Google',
@@ -95,6 +102,7 @@ return [
             'add_word' => 'Add Word',
             'list_word' => 'List Word',
             'start_lesson' => 'Start New Lesson',
+            'list_member' => 'List Member',
         ],
         'word' => [
             'add_word' => 'Add New Word',
@@ -136,5 +144,6 @@ return [
         'edit_profile' => 'Edit Profile',
         'detail_profile' => 'Detaile Profile',
         'lesson_test' => 'Lesson Test',
+        'list_member' => 'List Member',
     ],
 ];

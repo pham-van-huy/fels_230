@@ -24,11 +24,15 @@
                                 {{ trans('settings.text.learned_words') }}
                             </li>
                             <li class="list-group-item">
-                                <span class="badge">12</span>
+                                <span class="badge">
+                                    {{ $numberFollowers }}
+                                </span>
                                 {{ trans('settings.text.followers') }}
                             </li>
                             <li class="list-group-item">
-                                <span class="badge">13</span>
+                                <span class="badge">
+                                    {{ $numberFollowings }}
+                                </span>
                                 {{ trans('settings.text.following') }}
                             </li>
                         </ul>
