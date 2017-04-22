@@ -24,6 +24,10 @@ class LessonRepository extends BaseRepository implements LessonInterface
             'user_id' => auth()->id(),
             'category_id' => $categoryId,
         ];
+        $inputActivities = [
+            'user_id' => auth()->id(),
+            'action_type' => 'lesson',
+        ];
         $dataInputs = [];
 
         foreach ($inputResults as $key => $value) {
@@ -36,10 +40,11 @@ class LessonRepository extends BaseRepository implements LessonInterface
         DB::beginTransaction();
 
         try {
-            $result = $this->model
-                ->create($inputLesson)
-                ->results()
+            $lesson = $this->model
+                ->create($inputLesson);
+            $result = $lesson->results()
                 ->createMany($dataInputs);
+            $lesson->activity()->create($inputActivities);
             DB::commit();
 
             return $result;
@@ -61,7 +66,6 @@ class LessonRepository extends BaseRepository implements LessonInterface
         }
 
         $data['countIsCorrectWord'] = $mark;
-
         $dataResultCurrent = current($collectionResult);
         $idLessonCurrent = $dataResultCurrent->lesson_id;
         $words = $this->model->find($idLessonCurrent)->words()->get();

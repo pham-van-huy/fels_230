@@ -11,27 +11,33 @@
                 <b>{{ trans('settings.text.category.list_category') }}</b>
             </div>
             <div class="panel-body">
-                @foreach ($categories as $category)
-                    <div class="row border-bottom">
-                        <div class='col-md-8'>
-                            <h3>
-                                <b>
-                                    {{ $category->name }}
-                                    <small>
-                                        {{ trans('settings.text.have') }}
-                                        {{ $category->words->count() }}
-                                        {{ trans('settings.text.word.words') }}
-                                    </small>
-                                </b>
-                            </h3>
+                @if ($categories->isNotEmpty())
+                    @foreach ($categories as $category)
+                        <div class="row border-bottom">
+                            <div class='col-md-8'>
+                                <h3>
+                                    <b>
+                                        {{ $category->name }}
+                                        <small>
+                                            {{ trans('settings.text.have') }}
+                                            {{ $category->words->count() }}
+                                            {{ trans('settings.text.word.words') }}
+                                        </small>
+                                    </b>
+                                </h3>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="{{ action('User\LessonController@showLessonTest', $category->id) }}" class="btn btn-info start-lesson">
+                                    {{ trans('settings.button.start_lesson') }}
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <a href="{{ action('User\LessonController@showLessonTest', $category->id) }}" class="btn btn-info start-lesson">
-                                {{ trans('settings.button.start_lesson') }}
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    <p class="text-success">
+                        {{ trans('settings.text.category_empty') }}
+                    </p>
+                @endif
             </div>
         </div>
     </div>

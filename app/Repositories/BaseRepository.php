@@ -35,7 +35,7 @@ abstract class BaseRepository implements BaseInterface
         return $data = $this->model->find($id);
     }
 
-    public function where($conditions, $operator = null, $value = null)
+    public function where($conditions, $operator, $value)
     {
         return $this->model->where($conditions, $operator, $value)->get();
     }

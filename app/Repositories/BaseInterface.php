@@ -12,7 +12,7 @@ interface BaseInterface
 
     public function find($id);
 
-    public function where($conditions, $operator = null, $value = null);
+    public function where($conditions, $operator, $value);
 
     public function whereIn($column, $value);
 

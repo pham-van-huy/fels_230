@@ -11,4 +11,9 @@ class Activity extends Model
         'taget_id',
         'action_type',
     ];
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'taget_id');
+    }
 }
