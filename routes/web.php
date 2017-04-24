@@ -39,4 +39,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('result/{categoryId}/category', 'User\ResultController@store');
     Route::get('word/list', 'User\WordController@showList');
     Route::post('word/filter', 'User\WordController@wordsFilter');
+    Route::get('list/member', 'User\UserController@listMember');
+    Route::get('add/follow/{userId}', 'User\UserController@addRelationship');
 });

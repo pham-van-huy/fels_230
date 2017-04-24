@@ -12,4 +12,10 @@
             {{ trans('settings.text.nabar.list_word') }}
         </a>
     </li>
+
+    <li class="dropdown">
+        <a href="{{ action('User\UserController@listMember') }}">
+            {{ trans('settings.text.nabar.list_member') }}
+        </a>
+    </li>
 @endsection

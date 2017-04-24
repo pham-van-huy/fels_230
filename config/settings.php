@@ -20,4 +20,8 @@ return [
         'no_learned' => '0',
         'learned' => '1',
     ],
+    'status' => [
+        'success' => 1,
+        'fail' => 0,
+    ],
 ];

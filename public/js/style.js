@@ -40,4 +40,32 @@ $(document).ready(function() {
             e.preventDefault();
         }
     });
+
+    //add or remove relationship
+    $('.action-relationship-user').on('click', function () {
+        var varthis = $(this);
+        var textRepalce = varthis.attr('data-trans').trim();
+        var urlAjax = varthis.data('url-user');
+        var textCurrent = varthis.text().trim();
+        $.ajax({
+            url: urlAjax,
+            type: "get",
+            datatype: "json",
+            success : function (data) {
+                if (data.status) {
+                    if (data.result == 'add') {
+                        varthis.removeClass('btn-success')
+                            .addClass('btn-warning')
+                            .attr('data-trans', textCurrent)
+                            .text(textRepalce);
+                    } else {
+                        varthis.removeClass('btn-warning')
+                            .addClass('btn-success')
+                            .attr('data-trans', textCurrent)
+                            .text(textRepalce);
+                    }
+                }
+            },
+        });
+    });
 });
