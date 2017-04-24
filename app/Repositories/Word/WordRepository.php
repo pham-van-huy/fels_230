@@ -125,7 +125,8 @@ class WordRepository extends BaseRepository implements WordInterface
                 ->whereIn('category_id', $inputs['categoryId']);
         }
 
-        return $result->with([
+        return $result->where('word', 'like', '%' . $inputs['key'] . '%')
+            ->with([
                 'answers' => function ($query) {
                     $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
                 },

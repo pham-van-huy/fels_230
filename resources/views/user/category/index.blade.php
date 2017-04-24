@@ -7,7 +7,7 @@
 @section('content')
     <div class="container">
         <div class="panel panel-info">
-            <div class="panel-heading">
+            <div class="panel-heading text-heading">
                 <b>{{ trans('settings.text.category.list_category') }}</b>
             </div>
             <div class="panel-body">

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\User;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Repositories\User\UserInterface;
@@ -40,10 +41,36 @@ class UserController extends Controller
             ->with('message', trans('settings.text.user.update_success'));
     }
 
-    public function listMember()
+    public function listMember(Request $request)
     {
-        $members = $this->userRepository->paginate();
-        return view('user.follow.members', ['members' => $members]);
+        $options = [
+            config('settings.user.all') => trans('settings.text.all_member'),
+            config('settings.user.follow') => trans('settings.text.follow_member'),
+            config('settings.user.un_follow') => trans('settings.text.un_follow_member'),
+        ];
+
+        if ($request->isMethod('get')) {
+            $members = $this->userRepository->paginate();
+
+            return view('user.follow.members', [
+                'members' => $members,
+                'options' => $options,
+                'oldOption' => 'all',
+                'oldKeyName' => null,
+            ]);
+        }
+
+        if ($request->isMethod('post')) {
+            $inputs = $request->only('notOrFollow', 'keyName');
+            $members = $this->userRepository->filterMember($inputs);
+
+            return view('user.follow.members', [
+                'members' => $members,
+                'options' => $options,
+                'oldOption' => $inputs['notOrFollow'],
+                'oldKeyName' => $inputs['keyName'],
+            ]);
+        }
     }
 
     public function addRelationship($userId)

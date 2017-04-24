@@ -53,7 +53,8 @@
 }
 
 .word-list {
-    margin-top: 10px;
+    margin-top: 0px;
+
 }
 
 .word-list .section-filter-words .word-show {
@@ -86,5 +87,39 @@
 }
 
 .show-info-homepage {
-    min-height: 500px;
+    height: 500px;
+}
+
+.history {
+    overflow: scroll;
+}
+
+.user-history {
+    padding-right: 0px;
+}
+
+.following-history {
+    padding-left: 0px;
+}
+
+.box-filter {
+    margin-bottom: 0px;
+}
+
+.box-filter>div:first-child {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.infor-history {
+    padding-left: 3px;
+}
+
+.text-heading {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.question {
+    font-weight: bold;
 }
