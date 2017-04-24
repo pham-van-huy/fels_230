@@ -123,3 +123,15 @@
 .question {
     font-weight: bold;
 }
+
+.delete-answer {
+    margin-right: 16px;
+    background-color: #C83A36;
+    color: #fff;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.delete-answer:hover {
+    background-color: red;
+}

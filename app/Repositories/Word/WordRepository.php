@@ -110,16 +110,12 @@ class WordRepository extends BaseRepository implements WordInterface
 
         if (!isset($inputs['rdOption'])) {
             $result = $this->model->whereIn('category_id', $inputs['categoryId']);
-        }
-
-        if ($inputs['rdOption'] === config('settings.filter.learned')) {
+        } elseif ($inputs['rdOption'] === config('settings.filter.learned')) {
             $idOfWordLearned = $this->listWordIdLearned();
             $result = $this->model
                 ->whereIn('id', $idOfWordLearned)
                 ->whereIn('category_id', $inputs['categoryId']);
-        }
-
-        if ($inputs['rdOption'] === config('settings.filter.no_learned')) {
+        } else {
             $idOfWordLearned = $this->listWordIdLearned();
             $result = $this->model->whereNotIn('id', $idOfWordLearned)
                 ->whereIn('category_id', $inputs['categoryId']);

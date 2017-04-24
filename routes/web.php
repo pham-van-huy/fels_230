@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('category', 'Admin\CategoryController', ['expect' => ['show']]);
     Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
     Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
+    Route::post('filter/word', 'Admin\WordController@filerWord');
 });
 //route for user
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {

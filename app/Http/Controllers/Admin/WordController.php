@@ -30,10 +30,29 @@ class WordController extends Controller
         view()->share(['categories' => $categories]);
     }
 
+    public function filerWord(Request $request)
+    {
+        $inputFilter = $request->only('key', 'categoryId');
+        $words = $this->wordRepository->getWordByFilter($inputFilter);
+
+        return view('admin.word.index', [
+            'words' => $words,
+            'oldKey' => $inputFilter['key'],
+            'oldCategory' => $inputFilter['categoryId'],
+        ]);
+    }
+
     public function index()
     {
         $words = $this->wordRepository->paginate();
-        return view('admin.word.index', ['words' => $words]);
+        $oldCategory = 'default';
+        $oldKey = '';
+
+        return view('admin.word.index', [
+            'words' => $words,
+            'oldKey' => $oldKey,
+            'oldCategory' => $oldCategory,
+        ]);
     }
 
     public function create()
@@ -76,15 +95,16 @@ class WordController extends Controller
 
         DB::beginTransaction();
         try {
+            $deleteAnswer = $this->answerRepository->deleteAnswers($id, $inputAnswer);
             $updateWord = $this->wordRepository->update($id, $inputsWord);
-            $updateAnswer = $this->answerRepository->updateAnswer($inputAnswer);
+            $updateAnswer = $this->answerRepository->updateOrCreateAnswer($id, $inputAnswer);
             DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
         }
 
-        if (!$updateWord || !$updateAnswer) {
-            return redirect()->back()
+        if (!$updateWord || !$updateAnswer || !$deleteAnswer) {
+            return redirect()->action('Admin\WordController@index')
                 ->with('status', 'danger')
                 ->with('message', trans('settings.text.word.update_fail'));
         }

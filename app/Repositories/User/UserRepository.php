@@ -95,8 +95,9 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function getUserActivities()
     {
-        $lessonId = Auth::user()->activities
+        $lessonId = Auth::user()->activities()
             ->where('action_type', 'lesson')
+            ->orderBy('created_at', 'DSEC')
             ->take(config('settings.activities.limit_activities_user'))
             ->pluck('taget_id');
         $lessons =  Lesson::whereIn('id', $lessonId)

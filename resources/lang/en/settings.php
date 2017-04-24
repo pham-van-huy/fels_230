@@ -28,6 +28,7 @@ return [
         'filter' => 'Filter',
         'follow' => 'Follow',
         'search' => 'Search',
+        'add_answer' => 'Add answer',
     ],
     'text' => [
         'register' => 'Register',

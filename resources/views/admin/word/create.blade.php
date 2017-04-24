@@ -58,22 +58,27 @@
                   <p class="alignright answer-correct"><b>{{ trans('settings.text.answer.answer_correct') }}</b></p>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group group-answer">
                     @for ($i=0; $i < config('settings.answer.number_answer'); $i++)
-                        <div class="col-md-6 col-md-offset-3 answer-{{ $i }}">
-                            {{ Form::text('ans[' . $i . '][answer]', null, [
-                                'class' => 'form-control',
-                                'autofocus',
-                            ]) }}
+                        <div class="wrap-answer">
+                            <div class="col-md-6 col-md-offset-3">
+                                {{ Form::text('ans[' . $i . '][answer]', null, [
+                                    'class' => 'form-control',
+                                    'autofocus',
+                                ]) }}
+                                <span class="form-control-feedback delete-answer">
+                                    <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                </span>
+                                @if ($errors->has('ans.' . $i . '.answer'))
+                                    <p class="text-danger">{{ $errors->first('ans.' . $i . '.answer') }}</p>
+                                @endif
+                            </div>
 
-                            @if ($errors->has('ans.' . $i . '.answer'))
-                                <p class="text-danger">{{ $errors->first('ans.' . $i . '.answer') }}</p>
-                            @endif
+                            <label class="col-md-2 control-label only-correct">
+                                {{ Form::checkbox('ans[' . $i . '][is_correct]', config('settings.answer.is_correct_answer')) }}
+                            </label>
+                            <br/><br/>
                         </div>
-
-                        <label class="col-md-2 control-label only-correct is-correct-{{ $i }}">
-                            {{ Form::checkbox('ans[' . $i . '][is_correct]', config('settings.answer.is_correct_answer')) }}
-                        </label>
                     @endfor
                 </div>
 
@@ -86,6 +91,9 @@
                             ]) }}
                             <a href="{{ action('Admin\WordController@index') }}" class="btn btn-default">
                                 {{ trans('settings.button.back') }}
+                            </a>
+                            <a href="javascript:void(0)" id="add-answer" class="btn btn-primary">
+                                {{ trans('settings.button.add_answer') }}
                             </a>
                         </div>
                     </div>
