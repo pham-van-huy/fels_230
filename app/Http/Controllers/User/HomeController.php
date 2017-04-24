@@ -22,6 +22,8 @@ class HomeController extends Controller
 
     public function index()
     {
+        $followingActivities = $this->userRepository->getFollowingActivities();
+        $userActivities = $this->userRepository->getUserActivities();
         $numberWordsLearned = count($this->wordRepository->listWordIdLearned());
         $numberFollowers = Auth::user()->followers()->count();
         $numberFollowings = Auth::user()->followings()->count();
@@ -30,6 +32,8 @@ class HomeController extends Controller
             'numberWordsLearned' => $numberWordsLearned,
             'numberFollowers' => $numberFollowers,
             'numberFollowings' => $numberFollowings,
+            'userActivities' => $userActivities,
+            'followingActivities' => $followingActivities,
         ]);
     }
 }

@@ -11,28 +11,34 @@
                 <div class="panel panel-info">
                     <div class="panel-heading">{{ trans('settings.text.test') }}</div>
                     <div class="panel-body">
-                        {!! Form::open([
-                            'action' => ['User\ResultController@store', $categoryId],
-                            'method' => 'POST',
-                            'role' => 'form',
-                        ]) !!}
-                            @foreach ($words as $word)
-                                <div class="border-bottom">
-                                    <h4>{{ $loop->iteration }} . {{ $word->word }}</h4>
-                                    <div class="section-answer">
-                                        @foreach ($word->answers as $answer)
-                                        <div class="radio">
-                                            <label>
-                                                {!! Form::radio($word->id, $answer->id) !!}
-                                                {{ $answer->answer }}
-                                            </label>
+                        @if ($words->isNotEmpty())
+                            {!! Form::open([
+                                'action' => ['User\ResultController@store', $categoryId],
+                                'method' => 'POST',
+                                'role' => 'form',
+                            ]) !!}
+                                @foreach ($words as $word)
+                                    <div class="border-bottom">
+                                        <h4>{{ $loop->iteration }} . {{ $word->word }}</h4>
+                                        <div class="section-answer">
+                                            @foreach ($word->answers as $answer)
+                                            <div class="radio">
+                                                <label>
+                                                    {!! Form::radio($word->id, $answer->id) !!}
+                                                    {{ $answer->answer }}
+                                                </label>
+                                            </div>
+                                            @endforeach
                                         </div>
-                                        @endforeach
                                     </div>
-                                </div>
-                            @endforeach
-                            {!! Form::submit(trans('settings.button.check'), ['class' => 'btn btn-primary']) !!}
-                        {!! Form::close() !!}
+                                @endforeach
+                                {!! Form::submit(trans('settings.button.check'), ['class' => 'btn btn-primary']) !!}
+                            {!! Form::close() !!}
+                        @else
+                            <p class="text-success">
+                                {{ trans('settings.text.not_word_to_check') }}
+                            </p>
+                        @endif
                     </div>
                   <!--END BODY PANEL -->
                 </div>

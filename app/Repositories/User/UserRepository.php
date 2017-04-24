@@ -3,6 +3,7 @@ namespace App\Repositories\User;
 
 use Auth;
 use App\Models\User;
+use App\Models\Lesson;
 use App\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Input;
 use Exception;
@@ -90,5 +91,72 @@ class UserRepository extends BaseRepository implements UserInterface
         }
 
         return $result;
+    }
+
+    public function getUserActivities()
+    {
+        $lessonId = Auth::user()->activities
+            ->where('action_type', 'lesson')
+            ->take(config('settings.activities.limit_activities_user'))
+            ->pluck('taget_id');
+        $lessons =  Lesson::whereIn('id', $lessonId)
+            ->with(['answers' => function ($query) {
+                $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
+            },
+                ])
+            ->orderBy('created_at', 'DSEC')
+            ->take(config('settings.activities.limit_get'))->get();
+        if ($lessons->isEmpty()) {
+            return [];
+        }
+
+        foreach ($lessons as $lesson) {
+            $dateFormat = $lesson->created_at->format('d-m-Y');
+            $datas[$dateFormat][] = $lesson;
+        }
+
+        return $datas;
+    }
+
+    public function getFollowingActivities()
+    {
+        $limitActivities = config('settings.activities.limit_get_activities');
+        $users = Auth::user()->followings->take(config('settings.user.limit_number_show_in_homepage'));
+
+        if ($users->isEmpty()) {
+            return [];
+        }
+
+        foreach ($users as $user) {
+            $lessonId[] = $user->activities
+            ->where('action_type', 'lesson')
+            ->pluck('taget_id');
+        }
+
+        $arrayLessonId = collect($lessonId)->collapse();
+
+        $lessons = Lesson::whereIn('id', $arrayLessonId)
+            ->with(['answers' => function ($query) {
+                $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
+            },
+                ])
+            ->orderBy('created_at', 'DSEC')
+            ->get();
+
+        if ($lessons->isEmpty()) {
+            return [];
+        }
+
+        $data = [];
+
+        foreach ($lessons as $lesson) {
+            $userName = $lesson->user->name;
+
+            if (!isset($data[$userName]) || count($data[$userName]) < $limitActivities) {
+                $data[$userName][] = $lesson;
+            }
+        }
+
+        return $data;
     }
 }

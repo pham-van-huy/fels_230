@@ -35,4 +35,9 @@ class Lesson extends Model
     {
         return $this->belongsToMany(Word::class, 'results');
     }
+
+    public function activity()
+    {
+        return $this->hasOne(Activity::class, 'taget_id');
+    }
 }

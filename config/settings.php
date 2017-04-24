@@ -6,6 +6,7 @@ return [
         'avatar_default' => 'default-avatar.png',
         'path_avatar_default' => '/uploads/avatar/default-avatar.png',
         'is_admin' => 1,
+        'limit_number_show_in_homepage' => 5,
     ],
     'action' => [
         'add' => 'add',
@@ -23,5 +24,9 @@ return [
     'status' => [
         'success' => 1,
         'fail' => 0,
+    ],
+    'activities' => [
+        'limit_get_activities' => 5,
+        'limit_activities_user' => 10,
     ],
 ];

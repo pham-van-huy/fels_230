@@ -26,7 +26,10 @@
                                         ? 'is-correct' : 'not-correct' }}">
                                         {!! Form::radio($data['word'],
                                             $answer->id,
-                                            $answer->id == $data['id_answer_choiced'] ? 1 : 0
+                                            $answer->id == $data['id_answer_choiced'] ? 1 : 0,
+                                            [
+                                                'disabled',
+                                            ]
                                         ) !!}
                                         {{ $answer->answer }}
                                     </label>
