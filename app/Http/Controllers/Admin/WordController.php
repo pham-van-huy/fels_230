@@ -87,7 +87,7 @@ class WordController extends Controller
         return view('admin.word.edit', ['word' => $word]);
     }
 
-    public function update(Request $request, $id)
+    public function update(WordRequest $request, $id)
     {
         $inputs = $request->only('category_id', 'word', 'ans');
         $inputsWord = array_only($inputs, ['category_id', 'word']);

@@ -27,10 +27,12 @@ Route::get('login/{provider}/callback', 'Auth\SocialAuthController@handleProvide
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('home', 'Admin\HomeAdminController@index');
     Route::resource('category', 'Admin\CategoryController', ['expect' => ['show']]);
-    Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
+    Route::resource('user', 'Admin\UserController', ['except' => ['show']]);
+    Route::post('find/user', 'Admin\UserController@filterUser');
     Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
     Route::post('filter/word', 'Admin\WordController@filerWord');
 });
+
 //route for user
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('', 'User\HomeController@index');

@@ -29,6 +29,7 @@ return [
         'follow' => 'Follow',
         'search' => 'Search',
         'add_answer' => 'Add answer',
+        'add_user' => 'Add',
     ],
     'text' => [
         'register' => 'Register',
@@ -71,6 +72,8 @@ return [
         'un_follow_member' => 'Unfollow',
         'search' => 'Search user',
         'key_search' => 'Key Search',
+        'search_by_email' => 'Search Email',
+        'edit_user' => 'Edit user',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -90,13 +93,15 @@ return [
             'avatar_user' => 'Avatar',
             'name_user' => 'Name',
             'delete_fail' => 'Delete User Fail',
-            'delete_success' => 'Delete User Successfuly',
-            'update_success' => 'Update Profile Successfuly',
+            'delete_success' => 'Delete Successfuly',
+            'update_success' => 'Update Successfuly',
             'lesson' => 'Lessons',
             'followings' => 'Followings',
             'follow' => 'Follow',
             'followers' => 'Followers',
             'unfollow' => 'Unfollow',
+            'add_success' => 'Add new member successfuly',
+            'add_fail' => 'Add new member fail',
         ],
         'social' => [
             'google' => 'Google',
@@ -114,6 +119,7 @@ return [
             'list_word' => 'List Word',
             'start_lesson' => 'Start New Lesson',
             'list_member' => 'List Member',
+            'add_user' => 'Add User',
         ],
         'word' => [
             'add_word' => 'Add New Word',
@@ -158,5 +164,7 @@ return [
         'lesson_test' => 'Lesson Test',
         'list_member' => 'List Member',
         'result_search' => 'Result search',
+        'add_user' => 'Add User',
+        'edit_user' => 'Edit user',
     ],
 ];

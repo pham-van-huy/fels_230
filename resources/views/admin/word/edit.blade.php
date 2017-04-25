@@ -17,10 +17,11 @@
         <div class="col-md-6 col-md-offset-3">
             {{ Form::open([
                 'action' => ['Admin\WordController@update', $word->id],
-                'method' => 'PUT',
+                'method' => 'PATCH',
                 'class' => 'form-horizontal',
                 'role' => 'form',
             ]) }}
+                {{ Form::hidden('wordId', $word->id) }}
                 <legend>{{ trans('settings.text.word.edit_word') }}</legend>
 
                 <div class="form-group">

@@ -14,9 +14,29 @@
         @endif
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">
-                    <p class='text-center'>{{ trans('settings.title.list_user') }}</p>
-                </h3>
+                <div class='row'>
+                    <div class="col-md-6 text-heading">
+                        {{ trans('settings.title.list_user') }}
+                    </div>
+                    <div class='col-md-6 text-right'>
+                        {{ Form::open([
+                            'action' => 'Admin\UserController@filterUser',
+                            'method' => 'POST',
+                            'class' => 'form-inline',
+                        ]) }}
+                            <div class="form-group">
+                                {{ Form::text('key', $oldKey, [
+                                    'class' => 'form-control input-sm',
+                                    'placeholder' => trans('settings.text.search_by_email'),
+                                ]) }}
+                            </div>
+
+                            {{ Form::submit(trans('settings.button.filter'), [
+                                'class' => 'btn btn-primary form-control input-sm',
+                            ]) }}
+                        {{ Form::close() }}
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
             <table class="table table-hover">
@@ -42,6 +62,11 @@
                             </td>
                             <td>
                                 <ul class="list-category">
+                                    <li>
+                                        <a href="{{ action('Admin\UserController@edit', $user->id) }}" class="btn btn-success btn-xs">
+                                            {{ trans('settings.button.edit') }}
+                                        </a>
+                                    </li>
                                     <li>
                                         {{ Form::open([
                                             'action' => ['Admin\UserController@destroy', $user->id],

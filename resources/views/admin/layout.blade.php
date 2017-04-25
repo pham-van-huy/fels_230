@@ -13,6 +13,12 @@
                     {{ trans('settings.text.nabar.list_user') }}
                 </a>
             </li>
+
+            <li>
+                <a href="{{ action('Admin\UserController@create') }}">
+                    {{ trans('settings.text.nabar.add_user') }}
+                </a>
+            </li>
         </ul>
     </li>
 

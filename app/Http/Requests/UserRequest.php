@@ -17,6 +17,7 @@ class UserRequest extends FormRequest
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . auth()->id(),
             'password' => 'min:6|confirmed',
+            'avatar' => 'image|size:500',
         ];
     }
 }
