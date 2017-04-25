@@ -5,5 +5,7 @@ interface AnswerInterface
 {
     public function getAnswerFromInput($inputs);
 
-    public function updateAnswer($inputs);
+    public function updateOrCreateAnswer($wordId, $inputs);
+
+    public function deleteAnswers($wordId, $requestAnswerUpdate);
 }

@@ -1,12 +1,12 @@
 $(document).ready(function() {
 
     //only a answer is checked
-    $('.only-correct>input').on('click', function() {
+    $('.container').on('click', '.only-correct>input', function() {
        $('.only-correct>input').not(this).prop('checked', false);
     });
 
     //sure least one checkbox is checked
-    $('#create-word').on('click', function(e) {
+    $('.container').on('click', '#create-word',function(e) {
         var is_checked = $('.only-correct>input:checked').length;
 
         if (is_checked == 0) {
@@ -67,5 +67,28 @@ $(document).ready(function() {
                 }
             },
         });
+    });
+
+    //Apend New Answer For Word
+    var indexAnswer = 1;
+    $('.container').on('click', '#add-answer', function () {
+        var formAddAnswer  = '<div class="wrap-answer">'
+            + '<div class="col-md-6 col-md-offset-3">'
+            + '<input class="form-control" autofocus="autofocus" name="ans[add_new'
+            +  indexAnswer +'][answer]" type="text">'
+            + '<span class="form-control-feedback delete-answer">'
+            + '<i class="fa fa-trash-o" aria-hidden="true"></i>'
+            + '</span></div>'
+            + '<label class="col-md-2 control-label only-correct">'
+            + '<input name="ans[add_new' + indexAnswer + '][is_correct]" type="checkbox" value="1">'
+            + '</label><br/><br/>'
+            + '</div>';
+        $(".group-answer").append(formAddAnswer);
+        indexAnswer++;
+    });
+
+    //remove answer
+    $('.container').on('click', '.delete-answer', function () {
+        $(this).closest('.wrap-answer').remove();
     });
 });

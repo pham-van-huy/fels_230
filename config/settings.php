@@ -10,6 +10,7 @@ return [
         'all' => 'all',
         'follow' => 'follow',
         'un_follow' => 'un_follow',
+        'default_password' => 123123,
     ],
     'action' => [
         'add' => 'add',

@@ -17,7 +17,7 @@ class WordRequest extends FormRequest
             case 'PATCH':
             case 'POST':
                 return [
-                    'word' => 'required|max:25|min:3|unique:words,word',
+                    'word' => 'required|min:3|unique:words,word',
                     'category_id' => 'required|not_in:default',
                     'ans.*.answer' => 'required|max:100',
                 ];

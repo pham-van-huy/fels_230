@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="col-md-10 col-md-offset-1">
+    <div class="container">
 
         @if (!empty(session('status')))
             <div class="alert alert-{{ session('status') }}">
@@ -15,9 +15,39 @@
         @endif
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">
-                    <p class='text-center'>{{ trans('settings.title.list_word') }}</p>
-                </h3>
+                <div class='row'>
+                    <div class="col-md-6 text-heading">
+                        {{ trans('settings.title.list_word') }}
+                    </div>
+                    <div class='col-md-6 text-right'>
+                        {{ Form::open([
+                            'action' => 'Admin\WordController@filerWord',
+                            'method' => 'POST',
+                            'class' => 'form-inline',
+                        ]) }}
+                            <div class="form-group">
+                                <label>{{ trans('settings.text.key_search') }}</label>
+                                {{ Form::text('key', $oldKey, [
+                                    'class' => 'form-control input-sm',
+                                    'id' => 'key',
+                                    'maxlength' => "10",
+                                ]) }}
+                            </div>
+
+                            <div class="form-group">
+                                {{ Form::select('categoryId',
+                                    $categories,
+                                    $oldCategory,
+                                    ['class' => 'form-control input-sm']
+                                ) }}
+                            </div>
+
+                            {{ Form::submit(trans('settings.button.filter'), [
+                                'class' => 'btn btn-primary form-control input-sm',
+                            ]) }}
+                        {{ Form::close() }}
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
             <table class="table table-hover">

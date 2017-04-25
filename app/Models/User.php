@@ -67,4 +67,18 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class);
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user) {
+            //set password for user sign up social network
+            if (!$user->password) {
+                $user->password = config('settings.user.default_password_seeder');
+            }
+        });
+        static::deleting(function ($user) {
+            $user->activities()->delete();
+        });
+    }
 }

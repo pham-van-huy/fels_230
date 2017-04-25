@@ -20,6 +20,7 @@
                                 ]) }}
                                     <div class="form-group">
                                         <label>{{ trans('settings.text.key_search') }}</label>
+
                                         {{ Form::text('key', null, [
                                             'class' => 'form-control input-sm',
                                             'id' => 'key',
