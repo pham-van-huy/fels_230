@@ -159,4 +159,31 @@ class UserRepository extends BaseRepository implements UserInterface
 
         return $data;
     }
+
+    public function filterMember($inputs)
+    {
+        $option = $inputs['notOrFollow'];
+        $key = $inputs['keyName'];
+
+        $followingId = Auth::user()->followings->pluck('id');
+
+        if ($option == config('settings.user.all')) {
+            return $this->model->whereNotIn('id', [Auth::user()->id])
+                ->where('name', 'like', '%' . $key . '%')
+                ->paginate();
+        }
+
+        if ($option == config('settings.user.follow')) {
+            return $this->model->whereIn('id', $followingId)
+                ->where('name', 'like', '%' . $key . '%')
+                ->paginate();
+        }
+
+        if ($option == config('settings.user.un_follow')) {
+            return $this->model->whereNotIn('id', [Auth::user()->id])
+                ->whereNotIn('id', $followingId)
+                ->where('name', 'like', '%' . $key . '%')
+                ->paginate();
+        }
+    }
 }

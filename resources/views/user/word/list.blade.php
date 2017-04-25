@@ -8,7 +8,7 @@
     <div class="container">
         <div class="row">
             <div class="col col-md-12">
-                <div class="panel panel-info">
+                <div class="panel panel-info box-filter">
                     <div class="panel-heading">{{ trans('settings.text.filter_words') }}</div>
                     <div class="panel-body">
                         <div class="row">
@@ -19,9 +19,19 @@
                                     'class' => 'form-inline',
                                 ]) }}
                                     <div class="form-group">
+                                        <label>{{ trans('settings.text.key_search') }}</label>
+                                        {{ Form::text('key', null, [
+                                            'class' => 'form-control input-sm',
+                                            'id' => 'key',
+                                            'maxlength' => "10",
+                                        ]) }}
+                                    </div>
+
+                                    <div class="form-group">
                                         {{ Form::select('categoryId',
                                             $categories,
-                                            ['class' => 'form-control col-md-6']
+                                            1,
+                                            ['class' => 'form-control input-sm']
                                         ) }}
                                     </div>
 
@@ -47,7 +57,9 @@
 
                 <div class="panel panel-default word-list">
                     <div class="panel-body">
-                        <h2 class="text-center">{{ trans('settings.text.word.list_word') }}</h2>
+                        <h4>
+                            <b>{{ trans('settings.text.word.list_word') }}</b>
+                        </h4>
                         <div class="row">
                             <div class="col col-md-10 col-md-offset-1">
                                 @if (!empty($wordsGroupByAlpha))

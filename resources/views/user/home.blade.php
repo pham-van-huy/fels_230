@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="panel panel-info">
-                    <div class="panel-heading">
+                    <div class="panel-heading text-heading">
                         {{ trans('settings.text.user_infor') }}
                     </div>
                     <div class="panel-body show-info-homepage">
@@ -41,12 +41,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-5 user-history">
                 <div class="panel panel-info">
-                    <div class="panel-heading">
+                    <div class="panel-heading text-heading">
                         {{ trans('settings.text.activities_user') }}
                     </div>
-                    <div class="panel-body show-info-homepage">
+                    <div class="panel-body show-info-homepage history">
                         <div class="section-history">
                             @if (count($userActivities) > 0)
                                 @foreach ($userActivities as $time => $userActivity)
@@ -61,7 +61,7 @@
                                                 <span class="label label-info">
                                                     {{ $lesson->created_at->format('H:i A') }}
                                                 </span>
-                                                <span>
+                                                <span class="infor-history">
                                                     <a href="{{ action('User\ResultController@getResult', $lesson->id) }}">
                                                         {{ trans('settings.text.words_learned_category', [
                                                             'countLearnedWord' => $lesson->answers->count(),
@@ -81,12 +81,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 following-history">
                 <div class="panel panel-info">
-                    <div class="panel-heading">
+                    <div class="panel-heading text-heading">
                         {{ trans('settings.text.activities_of_followings') }}
                     </div>
-                    <div class="panel-body show-info-homepage">
+                    <div class="panel-body show-info-homepage history">
                         <div class="section-history">
                             @if (count($followingActivities) > 0)
                                 @foreach ($followingActivities as $nameUser => $followingActivity)
@@ -102,10 +102,11 @@
                                                 <span class="label label-info">
                                                     {{ $lesson->created_at->format('d/m/Y') }}
                                                 </span>
-                                                <span>{{ trans('settings.text.words_learned_category', [
-                                                    'countLearnedWord' => $lesson->answers->count(),
-                                                    'nameCagory' => $lesson->category->name,
-                                                ]) }}
+                                                <span class="infor-history">
+                                                    {{ trans('settings.text.words_learned_category', [
+                                                        'countLearnedWord' => $lesson->answers->count(),
+                                                        'nameCagory' => $lesson->category->name,
+                                                    ]) }}
                                                 </span>
                                             </p>
                                         </li>

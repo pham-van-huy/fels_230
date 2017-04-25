@@ -8,7 +8,33 @@
     <div class="container">
         <div class="panel panel-info">
             <div class="panel-heading">
-                {{ trans('settings.text.list_member') }}
+                <div class="row">
+                    <div class="col-md-7 text-heading">{{ trans('settings.text.list_member') }}</div>
+                    <div class="col-md-5">
+                        {{ Form::open([
+                            'method' => 'POST',
+                            'class' => 'form-inline',
+                            'action' => 'User\UserController@listMember',
+                        ]) }}
+                            <div class="form-group">
+                                {{ Form::select('notOrFollow', $options, $oldOption, [
+                                    'class' => 'form-control',
+                                ]) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::text('keyName', $oldKeyName, [
+                                    'class' => 'form-control',
+                                    'placeholder' => trans('settings.text.search'),
+                                ]) }}
+                            </div>
+                            <div class="form-group">
+                                {{ Form::submit(trans('settings.button.search'), [
+                                    'class' => 'btn btn-primary',
+                                ]) }}
+                            </div>
+                        {{ Form::close() }}
+                    </div>
+                </div>
             </div>
             <div class="panel-body">
                 <table class="table table-hover">

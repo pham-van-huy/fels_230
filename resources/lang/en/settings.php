@@ -27,6 +27,7 @@ return [
         'check' => 'Check',
         'filter' => 'Filter',
         'follow' => 'Follow',
+        'search' => 'Search',
     ],
     'text' => [
         'register' => 'Register',
@@ -64,6 +65,11 @@ return [
         'no_activity' => 'No Activity',
         'not_word_to_check' => 'You learned all word in this category',
         'category_empty' => 'Empty',
+        'all_member' => '--All--',
+        'follow_member' => 'Following',
+        'un_follow_member' => 'Unfollow',
+        'search' => 'Search user',
+        'key_search' => 'Key Search',
         'category' => [
             'name' => 'Name category',
             'add_success' => 'Add Category Successfuly!',
@@ -122,6 +128,7 @@ return [
             'words' => 'words',
             'word_empty' => 'Word Empty',
             'list_word' => 'List Word',
+            'result_search' => 'Result',
         ],
         'answer' => [
             'answer' => 'Answers',
@@ -149,5 +156,6 @@ return [
         'detail_profile' => 'Detaile Profile',
         'lesson_test' => 'Lesson Test',
         'list_member' => 'List Member',
+        'result_search' => 'Result search',
     ],
 ];

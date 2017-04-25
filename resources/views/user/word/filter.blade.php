@@ -1,15 +1,15 @@
 @extends('user.layout')
 
 @section('title')
-    {{ trans('settings.title.list_word') }}
+    {{ trans('settings.title.result_search') }}
 @endsection
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col col-md-12">
-                <div class="panel panel-info">
-                    <div class="panel-heading">{{ trans('settings.text.result_filter') }}</div>
+                <div class="panel panel-info box-filter">
+                    <div class="panel-heading">{{ trans('settings.text.filter_words') }}</div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col col-md-8 col-md-offset-3">
@@ -18,6 +18,15 @@
                                     'method' => 'POST',
                                     'class' => 'form-inline',
                                 ]) }}
+                                    <div class="form-group">
+                                        <label>Key search</label>
+                                        {{ Form::text('key', $oldKey, [
+                                            'class' => 'form-control input-sm',
+                                            'id' => 'key',
+                                            'maxlength' => "10",
+                                        ]) }}
+                                    </div>
+
                                     <div class="form-group">
                                         {{ Form::select('categoryId',
                                             $categories,
@@ -50,7 +59,9 @@
 
                 <div class="panel panel-default word-list">
                     <div class="panel-body">
-                        <h2 class="text-center">{{ trans('settings.text.word.list_word') }}</h2>
+                        <h4>
+                            <b>{{ trans('settings.text.word.result_search') }}</b>
+                        </h4>
                         <div class="row">
                             <div class="col col-md-10 col-md-offset-1">
                                 @if (!empty($wordsGroup))

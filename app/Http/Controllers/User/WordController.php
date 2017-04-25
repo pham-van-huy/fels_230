@@ -37,13 +37,15 @@ class WordController extends Controller
 
     public function wordsFilter(Request $request)
     {
-        $inputs = $request->only('categoryId', 'rdOption');
+        $inputs = $request->only('categoryId', 'rdOption', 'key');
         $oldCategory = $inputs['categoryId'];
         $oldRdOption = $inputs['rdOption'];
+        $oldKey = $inputs['key'];
         $wordsPaginate = $this->wordRepository->getWordByFilter($inputs);
         $wordsGroup = $this->wordRepository->groupWordByAlpha($wordsPaginate);
 
         return view('user.word.filter', [
+            'oldKey' => $oldKey,
             'oldCategory' => $oldCategory,
             'oldRdOption' => $oldRdOption,
             'wordsPaginate' => $wordsPaginate,

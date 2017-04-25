@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col col-md-12">
                 <div class="panel panel-info">
-                    <div class="panel-heading">{{ trans('settings.text.test') }}</div>
+                    <div class="panel-heading text-heading">{{ trans('settings.text.test') }}</div>
                     <div class="panel-body">
                         @if ($words->isNotEmpty())
                             {!! Form::open([
@@ -19,7 +19,7 @@
                             ]) !!}
                                 @foreach ($words as $word)
                                     <div class="border-bottom">
-                                        <h4>{{ $loop->iteration }} . {{ $word->word }}</h4>
+                                        <h4 class="question">{{ $loop->iteration }} . {{ $word->word }}</h4>
                                         <div class="section-answer">
                                             @foreach ($word->answers as $answer)
                                             <div class="radio">

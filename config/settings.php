@@ -7,6 +7,9 @@ return [
         'path_avatar_default' => '/uploads/avatar/default-avatar.png',
         'is_admin' => 1,
         'limit_number_show_in_homepage' => 5,
+        'all' => 'all',
+        'follow' => 'follow',
+        'un_follow' => 'un_follow',
     ],
     'action' => [
         'add' => 'add',
