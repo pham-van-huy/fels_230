@@ -12,9 +12,9 @@
                     <div class="col-md-7 text-heading">{{ trans('settings.text.list_member') }}</div>
                     <div class="col-md-5">
                         {{ Form::open([
-                            'method' => 'POST',
+                            'method' => 'GET',
                             'class' => 'form-inline',
-                            'action' => 'User\UserController@listMember',
+                            'action' => 'User\UserController@memberFilter',
                         ]) }}
                             <div class="form-group">
                                 {{ Form::select('notOrFollow', $options, $oldOption, [
@@ -50,38 +50,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($members as $member)
+                        @if(!empty($members))
+                            @foreach ($members as $member)
+                                <tr>
+                                    <td>{{ $member->name }}</td>
+                                    <td>{{ $member->email }}</td>
+                                    <td>
+                                        <img class="img-responsive img-list-user" src="{{ $member->avatar }}">
+                                    </td>
+                                    <td>{{ $member->lessons->count() }}</td>
+                                    <td>{{ $member->followers->count() }}</td>
+                                    <td>{{ $member->followings->count() }}</td>
+                                    <td class="show-member">
+                                        @if (auth()->user()->followings->contains('id', $member->id))
+                                            <a class="btn btn-warning action-relationship-user" href="javascript:void(0)"
+                                                data-trans="{{ trans('settings.text.user.follow') }}"
+                                                data-url-user= "{{ action('User\UserController@addRelationship', [
+                                                    'id' => $member->id,
+                                                ]) }}">
+                                                {{ trans('settings.text.user.unfollow') }}
+                                            </a>
+                                        @else
+                                            <a class="btn btn-success action-relationship-user" href="javascript:void(0)"
+                                                data-trans="{{ trans('settings.text.user.unfollow') }}"
+                                                data-url-user= "{{ action('User\UserController@addRelationship', $member->id) }}">
+                                                {{ trans('settings.text.user.follow') }}
+                                            </a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
                             <tr>
-                                <td>{{ $member->name }}</td>
-                                <td>{{ $member->email }}</td>
-                                <td>
-                                    <img class="img-responsive img-list-user" src="{{ $member->avatar }}">
-                                </td>
-                                <td>{{ $member->lessons->count() }}</td>
-                                <td>{{ $member->followers->count() }}</td>
-                                <td>{{ $member->followings->count() }}</td>
-                                <td class="show-member">
-                                    @if (auth()->user()->followings->contains('id', $member->id))
-                                        <a class="btn btn-warning action-relationship-user" href="javascript:void(0)"
-                                            data-trans="{{ trans('settings.text.user.follow') }}"
-                                            data-url-user= "{{ action('User\UserController@addRelationship', [
-                                                'id' => $member->id,
-                                            ]) }}">
-                                            {{ trans('settings.text.user.unfollow') }}
-                                        </a>
-                                    @else
-                                        <a class="btn btn-success action-relationship-user" href="javascript:void(0)"
-                                            data-trans="{{ trans('settings.text.user.unfollow') }}"
-                                            data-url-user= "{{ action('User\UserController@addRelationship', $member->id) }}">
-                                            {{ trans('settings.text.user.follow') }}
-                                        </a>
-                                    @endif
-                                </td>
+                                <td>{{ trans('settings.text.category_empty') }}</td>
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
-                {{ $members->links() }}
+                @if(!empty($members))
+                    {{ $members->links() }}
+                @endif
             </div>
         </div>
     </div>

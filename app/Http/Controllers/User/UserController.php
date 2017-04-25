@@ -41,36 +41,39 @@ class UserController extends Controller
             ->with('message', trans('settings.text.user.update_success'));
     }
 
-    public function listMember(Request $request)
+    public function listMember()
     {
         $options = [
             config('settings.user.all') => trans('settings.text.all_member'),
             config('settings.user.follow') => trans('settings.text.follow_member'),
             config('settings.user.un_follow') => trans('settings.text.un_follow_member'),
         ];
+        $members = $this->userRepository->paginate();
 
-        if ($request->isMethod('get')) {
-            $members = $this->userRepository->paginate();
+        return view('user.follow.members', [
+            'members' => $members,
+            'options' => $options,
+            'oldOption' => 'all',
+            'oldKeyName' => null,
+        ]);
+    }
 
-            return view('user.follow.members', [
-                'members' => $members,
-                'options' => $options,
-                'oldOption' => 'all',
-                'oldKeyName' => null,
-            ]);
-        }
+    public function memberFilter(Request $request)
+    {
+        $options = [
+            config('settings.user.all') => trans('settings.text.all_member'),
+            config('settings.user.follow') => trans('settings.text.follow_member'),
+            config('settings.user.un_follow') => trans('settings.text.un_follow_member'),
+        ];
+        $inputs = $request->only('notOrFollow', 'keyName');
+        $members = $this->userRepository->filterMember($inputs);
 
-        if ($request->isMethod('post')) {
-            $inputs = $request->only('notOrFollow', 'keyName');
-            $members = $this->userRepository->filterMember($inputs);
-
-            return view('user.follow.members', [
-                'members' => $members,
-                'options' => $options,
-                'oldOption' => $inputs['notOrFollow'],
-                'oldKeyName' => $inputs['keyName'],
-            ]);
-        }
+        return view('user.follow.filter', [
+            'members' => $members,
+            'options' => $options,
+            'oldOption' => $inputs['notOrFollow'],
+            'oldKeyName' => $inputs['keyName'],
+        ]);
     }
 
     public function addRelationship($userId)

@@ -53,22 +53,22 @@ class AddConstraintTables extends Migration
     public function down()
     {
         Schema::table('social_accounts', function (Blueprint $table) {
-            $table->dropForeign('user_id');
+            $table->dropForeign('social_accounts_user_id_foreign');
         });
 
         Schema::table('words', function (Blueprint $table) {
-            $table->dropForeign('category_id');
+            $table->dropForeign('words_category_id_foreign');
         });
 
         Schema::table('results', function (Blueprint $table) {
-            $table->dropForeign('lesson_id');
-            $table->dropForeign('answer_id');
-            $table->dropForeign('word_id');
+            $table->dropForeign('results_lesson_id_foreign');
+            $table->dropForeign('results_answer_id_foreign');
+            $table->dropForeign('results_word_id_foreign');
         });
 
         Schema::table('lessons', function (Blueprint $table) {
-            $table->dropForeign('user_id');
-            $table->dropForeign('category_id');
+            $table->dropForeign('lessons_user_id_foreign');
+            $table->dropForeign('lessons_category_id_foreign');
         });
 
         Schema::table('answers', function (Blueprint $table) {

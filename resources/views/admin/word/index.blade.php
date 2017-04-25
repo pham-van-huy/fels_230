@@ -22,7 +22,7 @@
                     <div class='col-md-6 text-right'>
                         {{ Form::open([
                             'action' => 'Admin\WordController@filerWord',
-                            'method' => 'POST',
+                            'method' => 'GET',
                             'class' => 'form-inline',
                         ]) }}
                             <div class="form-group">

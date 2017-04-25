@@ -34,6 +34,7 @@ class UserRepository extends BaseRepository implements UserInterface
 
     public function update($id, $inputs)
     {
+        $user = $this->model->find($id);
         $dateUpdate = [
             'name' => $inputs['name'],
             'email' => $inputs['email'],
@@ -44,10 +45,10 @@ class UserRepository extends BaseRepository implements UserInterface
         }
 
         if (!empty($inputs['avatar'])) {
-            $dateUpdate['avatar'] = $this->uploadAvatar(Auth::user()->avatar);
+            $dateUpdate['avatar'] = $this->uploadAvatar($user->avatar);
         }
 
-        return Auth::user()->update($dateUpdate);
+        return $user->update($dateUpdate);
     }
 
     protected function uploadAvatar($oldImage = null)
@@ -186,5 +187,11 @@ class UserRepository extends BaseRepository implements UserInterface
                 ->where('name', 'like', '%' . $key . '%')
                 ->paginate();
         }
+    }
+
+    public function findByEmail($key)
+    {
+        return $this->model->where('email', 'like', '%' . $key . '%')
+            ->where('id', '<>', auth()->id())->paginate();
     }
 }

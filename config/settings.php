@@ -3,6 +3,7 @@ return [
     'user' => [
         'avatar_path' => '/uploads/avatar/',
         'paginate' => 10,
+        'paginate_word' => 200,
         'avatar_default' => 'default-avatar.png',
         'path_avatar_default' => '/uploads/avatar/default-avatar.png',
         'is_admin' => 1,
@@ -32,5 +33,8 @@ return [
     'activities' => [
         'limit_get_activities' => 5,
         'limit_activities_user' => 10,
+    ],
+    'word' => [
+        'limit_words_random' => 15,
     ],
 ];

@@ -86,7 +86,7 @@ class WordRepository extends BaseRepository implements WordInterface
             'answers' => function ($query) {
                 $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
             },
-        ])->orderBy('word', 'ASC')->paginate(config('settings.user.paginate'));
+        ])->orderBy('word', 'ASC')->paginate(config('settings.user.paginate_word'));
     }
 
     public function groupWordByAlpha($words)
@@ -94,7 +94,11 @@ class WordRepository extends BaseRepository implements WordInterface
         $alpha = [];
         foreach ($words as $value) {
             $key = $value->word[0];
-            $alpha[$key] = [$value];
+
+            if (!isset($alpha[$key])) {
+                $alpha[$key] = [];
+            }
+            $alpha[$key][] = $value;
         }
 
         return $alpha;
@@ -126,6 +130,6 @@ class WordRepository extends BaseRepository implements WordInterface
                 'answers' => function ($query) {
                     $query->whereIsCorrect(config('settings.answer.is_correct_answer'));
                 },
-            ])->orderBy('word', 'ASC')->paginate(config('settings.user.paginate'));
+            ])->orderBy('word', 'ASC')->paginate(config('settings.user.paginate_word'));
     }
 }

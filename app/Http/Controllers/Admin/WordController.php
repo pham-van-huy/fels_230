@@ -35,7 +35,7 @@ class WordController extends Controller
         $inputFilter = $request->only('key', 'categoryId');
         $words = $this->wordRepository->getWordByFilter($inputFilter);
 
-        return view('admin.word.index', [
+        return view('admin.word.filter', [
             'words' => $words,
             'oldKey' => $inputFilter['key'],
             'oldCategory' => $inputFilter['categoryId'],
@@ -87,7 +87,7 @@ class WordController extends Controller
         return view('admin.word.edit', ['word' => $word]);
     }
 
-    public function update(Request $request, $id)
+    public function update(WordRequest $request, $id)
     {
         $inputs = $request->only('category_id', 'word', 'ans');
         $inputsWord = array_only($inputs, ['category_id', 'word']);

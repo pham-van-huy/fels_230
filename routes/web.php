@@ -27,10 +27,12 @@ Route::get('login/{provider}/callback', 'Auth\SocialAuthController@handleProvide
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('home', 'Admin\HomeAdminController@index');
     Route::resource('category', 'Admin\CategoryController', ['expect' => ['show']]);
-    Route::resource('user', 'Admin\UserController', ['except' => ['store', 'create', 'edit', 'update']]);
+    Route::resource('user', 'Admin\UserController', ['except' => ['show']]);
+    Route::get('find/user', 'Admin\UserController@filterUser');
     Route::resource('word', 'Admin\WordController', ['except' => ['show']]);
-    Route::post('filter/word', 'Admin\WordController@filerWord');
+    Route::get('filter/word', 'Admin\WordController@filerWord');
 });
+
 //route for user
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('', 'User\HomeController@index');
@@ -40,8 +42,8 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('result/{categoryId}/category', 'User\ResultController@store');
     Route::get('result/{lessonId}/lesson', 'User\ResultController@getResult');
     Route::get('word/list', 'User\WordController@showList');
-    Route::post('word/filter', 'User\WordController@wordsFilter');
+    Route::get('word/filter', 'User\WordController@wordsFilter');
     Route::get('list/member', 'User\UserController@listMember');
-    Route::post('list/member', 'User\UserController@listMember');
+    Route::get('filter/member', 'User\UserController@memberFilter');
     Route::get('add/follow/{userId}', 'User\UserController@addRelationship');
 });

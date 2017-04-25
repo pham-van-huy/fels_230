@@ -15,7 +15,7 @@
                             <div class="col col-md-8 col-md-offset-3">
                                 {{ Form::open([
                                     'action' => 'User\WordController@wordsFilter',
-                                    'method' => 'POST',
+                                    'method' => 'GET',
                                     'class' => 'form-inline',
                                 ]) }}
                                     <div class="form-group">
@@ -31,7 +31,7 @@
                                     <div class="form-group">
                                         {{ Form::select('categoryId',
                                             $categories,
-                                            1,
+                                            '',
                                             ['class' => 'form-control input-sm']
                                         ) }}
                                     </div>

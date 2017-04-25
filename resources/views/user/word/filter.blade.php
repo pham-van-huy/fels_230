@@ -15,7 +15,7 @@
                             <div class="col col-md-8 col-md-offset-3">
                                 {{ Form::open([
                                     'action' => 'User\WordController@wordsFilter',
-                                    'method' => 'POST',
+                                    'method' => 'GET',
                                     'class' => 'form-inline',
                                 ]) }}
                                     <div class="form-group">
@@ -86,7 +86,11 @@
                             </div>
                         </div>
                     </div>
-                    {{ $wordsPaginate->links() }}
+                    {{ $wordsPaginate->appends([
+                        'key' => $oldKey,
+                        'categoryId' => $oldCategory,
+                        'rdOption' => $oldRdOption,
+                    ])->links() }}
                 </div>
             </div>
         </div>
